@@ -5,14 +5,14 @@ const playerEl = document.querySelector('iframe');
 
 const player = new Player(playerEl);
 
+const STORAGE_KEY = 'videoplayer-current-time';
+
 player.on('timeupdate', throttle(handleSaveStopPlayback, 1000));
 
 function handleSaveStopPlayback(event) {
-  localStorage.setItem('videoplayer-current-time', event.seconds);
+  localStorage.setItem(STORAGE_KEY, event.seconds);
 }
 
-let currentTime = localStorage.getItem('videoplayer-current-time');
+let currentTime = localStorage.getItem(STORAGE_KEY) || 0;
 
-let saveTime = currentTime !== 0 ? currentTime : 0;
-
-player.setCurrentTime(saveTime);
+player.setCurrentTime(currentTime);

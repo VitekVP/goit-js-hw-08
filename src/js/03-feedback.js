@@ -42,9 +42,11 @@ function handleSubmitForm(event) {
     return;
   }
 
-  console.log(inputData);
-  delete inputData.email;
-  delete inputData.message;
+  const submitData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+
+  console.log(submitData);
+  delete submitData.email;
+  delete submitData.message;
 
   event.currentTarget.reset();
 
